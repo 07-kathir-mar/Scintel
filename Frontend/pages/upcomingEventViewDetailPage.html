@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Event Details</title>
+
+<style>
+.container{
+    display:flex;
+    border:1px solid #ccc;
+    padding:20px;
+}
+
+.image{
+    width:250px;
+    height:250px;
+    background:#333;
+}
+
+.content{
+    margin-left:20px;
+}
+
+.buttons{
+    margin-top:20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Event Details</h2>
+
+<div class="container">
+
+    <div class="image"></div>
+
+    <div class="content">
+
+        <h3 id="title"></h3>
+
+        <p id="description"></p>
+
+        <p id="registration_start"></p>
+        <p id="registration_end"></p>
+
+        <p id="event_start"></p>
+        <p id="event_end"></p>
+
+        <p id="faculty"></p>
+        <p id="student"></p>
+
+    </div>
+
+</div>
+
+<div class="buttons">
+<button onclick="downloadPDF()">Download PDF</button>
+
+<button onclick="registerEvent()">Register</button>
+
+</div>
+
+<script src="../js/upcomingEventViewDetailPage.js"></script>
+
+</body>
+</html>

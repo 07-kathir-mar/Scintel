@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upcoming Events</title>
+
+<style>
+
+.card{
+    display:flex;
+    border:1px solid #ccc;
+    margin:10px;
+    padding:10px;
+}
+
+.image{
+    width:150px;
+    height:150px;
+    background:#333;
+}
+
+.content{
+    margin-left:10px;
+}
+
+table{
+    border-collapse: collapse;
+    width:60%;
+    margin-top:20px;
+}
+
+table, th, td{
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:center;
+}
+
+.batch-tabs button{
+    margin-right:10px;
+    padding:6px 12px;
+}
+
+.batch-container{
+    display:flex;
+    margin-top:20px;
+}
+
+.batch-image{
+    width:300px;
+    height:200px;
+    background:#333;
+    margin-right:20px;
+}
+
+
+.glories-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-top:20px;
+}
+
+.glory-card{
+    border:1px solid #ccc;
+    border-radius:8px;
+    overflow:hidden;
+    background:#fff;
+}
+
+.glory-image{
+    height:150px;
+    background:#444;
+    background-size:cover;
+    background-position:center;
+}
+
+.glory-content{
+    padding:10px;
+}
+
+.glory-content h3{
+    margin:0;
+}
+
+.glory-content p{
+    font-size:14px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Upcoming Events</h2>
+
+<div id="eventsContainer"></div>
+
+<hr>
+
+<h2>Activities</h2>
+
+<table>
+<thead>
+<tr>
+<th>Year</th>
+<th>No of Activities</th>
+<th>View</th>
+</tr>
+</thead>
+
+<tbody id="activitiesContainer"></tbody>
+
+</table>
+
+<hr>
+
+<h2>Association Members</h2>
+
+<div id="batchTabs" class="batch-tabs"></div>
+
+<div class="batch-container">
+
+    <div id="batchImage" class="batch-image"></div>
+
+    <div>
+        <h3 id="batchTitle"></h3>
+        <p id="batchDescription"></p>
+    </div>
+
+</div>
+
+<table>
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Register No.</th>
+<th>Role</th>
+<th>Year</th>
+</tr>
+</thead>
+
+<tbody id="membersTable"></tbody>
+
+</table>
+
+<hr>
+
+<h2>Glories of SCINTEL</h2>
+
+<div id="gloriesContainer" class="glories-grid"></div>
+
+<script src="../js/LandingPage.js"></script>
+
+</body>
+</html>
