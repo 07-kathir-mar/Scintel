@@ -26,6 +26,8 @@ import AdminDeleteRoutes from "./routes/Admin_DeleteSpecificEventRoutes.js";
 import AdminActivityBatchesRoutes from "./routes/Admin_ActivityAllBatchesRoutes.js";
 import AdminActivitySpecificBatchRoutes from "./routes/Admin_ActivitySpecificBatchAllEventRoutes.js";
 import AdminAddActivityRoutes from "./routes/Admin_AddActivityRoutes.js";
+import AdminEditActivityRoutes from "./routes/Admin_editActivityRoutes.js";
+import AdminUpdateEditActivityRoutes from "./routes/Admin_UpdateEditActivityRoutes.js";
 
 
 const app = express();
@@ -67,7 +69,8 @@ app.use("/api", AdminDeleteRoutes);
 app.use("/api", AdminActivityBatchesRoutes);
 app.use("/api", AdminActivitySpecificBatchRoutes);
 app.use("/api", AdminAddActivityRoutes);
-
+app.use("/api", AdminEditActivityRoutes);
+app.use("/api", AdminUpdateEditActivityRoutes);
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");

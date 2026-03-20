@@ -1,10 +1,43 @@
 import sequelize from "../config/database.js";
-import cloudinary from "../config/cloudinary.js";
+
+
+// ================= REQUIRED FIELDS (DB NOT NULL CONSTRAINT) =================
+//
+// Mandatory Text Fields (req.body):
+// - batch
+// - title
+// - description
+// - start_date
+// - participants
+// - testimonials_name
+// - testimonials_class
+// - testimonials_feedback
+//
+// Mandatory File Fields (req.files):
+// - brochure              → maps to brochure_url (NOT NULL)
+// - event_images          → maps to event_image_url (NOT NULL)
+//
+// Optional Fields:
+// - end_date
+// - resource_person_image
+// - resource_person_name
+// - resource_person_description
+// - winner_image
+// - winner_name
+// - winner_description
+//
+// NOTE:
+// - If required fields are missing → DB will throw NOT NULL constraint error
+// - Always validate before inserting into DB
+// ============================================================================
+
+
 
 export const addActivity = async (req, res) => {
     try {
-        console.log("🔥 ADD ACTIVITY WITH IMAGES");
-        console.log("FILES:", req.body);
+        console.log("ADD ACTIVITY WITH IMAGES");
+        console.log("BODY:", req.body);
+        console.log("FILES:", req.files);
 
         const {
             batch,
@@ -20,7 +53,7 @@ export const addActivity = async (req, res) => {
             testimonials_feedback
         } = req.body;
 
-        // ✅ Validate required fields
+        // Validate required text fields
         if (
             !batch ||
             !title ||
@@ -37,54 +70,32 @@ export const addActivity = async (req, res) => {
             });
         }
 
-        // 🔥 Upload helper (SAFE)
-        const uploadToCloudinary = async (file) => {
-            return new Promise((resolve, reject) => {
-                if (!file || !file.buffer) return resolve(null);
+        // Get file URLs directly from multer (already uploaded to Cloudinary)
+        const brochure_url =
+            req.files?.brochure?.[0]?.path || null;
 
-                cloudinary.uploader.upload_stream(
-                    { folder: "activities" },
-                    (error, result) => {
-                        if (error) reject(error);
-                        else resolve(result.secure_url);
-                    }
-                ).end(file.buffer);
-            });
-        };
+        const resource_person_image_url =
+            req.files?.resource_person_image?.[0]?.path || null;
 
-        // 🔥 SAFE FILE FETCHER
-        const getFileUrl = async (fieldName) => {
-            if (
-                req.files &&
-                req.files[fieldName] &&
-                req.files[fieldName].length > 0 &&
-                req.files[fieldName][0].buffer
-            ) {
-                return await uploadToCloudinary(req.files[fieldName][0]);
-            }
-            return null;
-        };
+        const winner_image =
+            req.files?.winner_image?.[0]?.path || null;
 
-        // ✅ Single file uploads
-        const brochure_url = await getFileUrl("brochure");
-        const resource_person_image_url = await getFileUrl("resource_person_image");
-        const winner_image = await getFileUrl("winner_image");
+        // Handle multiple event images
+        let event_image_url = null;
 
-        // 🔥 MULTIPLE EVENT IMAGES
-        let event_images = [];
-
-        if (req.files && req.files["event_images"]) {
-            for (let file of req.files["event_images"]) {
-                if (file && file.buffer) {
-                    const url = await uploadToCloudinary(file);
-                    if (url) event_images.push(url);
-                }
-            }
+        if (req.files?.event_images) {
+            const urls = req.files.event_images.map(file => file.path);
+            event_image_url = urls.join(",");
         }
 
-        const event_image_url = event_images.length > 0 ? event_images.join(",") : null;
+        // Validate required file fields (based on DB constraints)
+        if (!brochure_url || !event_image_url) {
+            return res.status(400).json({
+                success: false,
+                message: "Brochure and event images are required"
+            });
+        }
 
-        // ✅ FINAL QUERY
         const query = `
             INSERT INTO activities (
                 batch,
@@ -125,17 +136,17 @@ export const addActivity = async (req, res) => {
         await sequelize.query(query, {
             replacements: {
                 batch,
-                brochure_url: brochure_url || null,
+                brochure_url,
                 title,
                 description,
                 start_date,
                 end_date: end_date || null,
                 participants,
-                resource_person_image_url: resource_person_image_url || null,
+                resource_person_image_url,
                 resource_person_name: resource_person_name || null,
                 resource_person_description: resource_person_description || null,
-                event_image_url: event_image_url || null,
-                winner_image: winner_image || null,
+                event_image_url,
+                winner_image,
                 testimonials_name,
                 testimonials_class,
                 testimonials_feedback
@@ -144,11 +155,11 @@ export const addActivity = async (req, res) => {
 
         return res.status(201).json({
             success: true,
-            message: "Activity added successfully 🚀"
+            message: "Activity added successfully"
         });
 
     } catch (error) {
-        console.error("❌ FULL ERROR:", error);
+        console.error("FULL ERROR:", error);
         return res.status(500).json({
             success: false,
             message: error.message
