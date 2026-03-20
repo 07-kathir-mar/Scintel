@@ -28,7 +28,15 @@ import AdminActivitySpecificBatchRoutes from "./routes/Admin_ActivitySpecificBat
 import AdminAddActivityRoutes from "./routes/Admin_AddActivityRoutes.js";
 import AdminEditActivityRoutes from "./routes/Admin_editActivityRoutes.js";
 import AdminUpdateEditActivityRoutes from "./routes/Admin_UpdateEditActivityRoutes.js";
-
+import AdminDeleteActivityRoutes from "./routes/Admin_DeleteSpecificSuggestionRoutes.js";
+import AdminFetchAllSuggestionsRoutes from "./routes/Admin_FetchAllSuggestionsRoutes.js";
+import AdminFetchSpecificSuggestionsRoutes from "./routes/Admin_FetchSpecificIdSuggestionsRoutes.js";
+import AdminDeleteSpecificSuggestionRoutes from "./routes/Admin_DeleteSpecificSuggestionRoutes.js";
+import AdminAddGloryRoutes from "./routes/Admin_AddGloryRoutes.js";
+import AdminFetchAllGloriesRoutes from "./routes/Admin_FetchAllGloriesRoutes.js";
+import AdminDeleteSpecificGloryRoutes from "./routes/Admin_DeleteSpecificGloryRoutes.js";
+import AdminFetchSpecificGloryRoutes from "./routes/Admin_FetchSpecificGloryRoutes.js";
+import AdminUpdateEditGloryRoutes from "./routes/Admin_UpdateEditGloryRoutes.js";
 
 const app = express();
 
@@ -71,6 +79,17 @@ app.use("/api", AdminActivitySpecificBatchRoutes);
 app.use("/api", AdminAddActivityRoutes);
 app.use("/api", AdminEditActivityRoutes);
 app.use("/api", AdminUpdateEditActivityRoutes);
+app.use("/api", AdminDeleteActivityRoutes);
+app.use("/api", AdminFetchAllSuggestionsRoutes);
+app.use("/api", AdminFetchSpecificSuggestionsRoutes);
+app.use("/api", AdminDeleteSpecificSuggestionRoutes); 
+app.use("/api", AdminAddGloryRoutes);
+app.use("/api", AdminFetchAllGloriesRoutes);
+app.use("/api", AdminDeleteSpecificGloryRoutes);
+app.use("/api", AdminFetchSpecificGloryRoutes);
+app.use("/api", AdminUpdateEditGloryRoutes);
+
+
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
