@@ -46,6 +46,16 @@ import AdminDeleteMemberAssociationRoutes from "./routes/Admin_DeleteMemberAssoc
 import AdminDeleteSpecificBatchRoutes from "./routes/Admin_DeleteSpecificBatchRoutes.js";
 import AdminFetchSpecificBatchAssociationRoutes from "./routes/Admin_FetchSpecificBatchAssociationRoutes.js";
 import AdminUpdateEditAssociationBatchRoutes from "./routes/Admin_UpdateEditAssociationBatchRoutes.js";
+import AdminCurrentProblemTitleListingRoutes from "./routes/Admin_CurrentProblemTitleListingRoutes.js";
+import AdminCurrentProblemSpecificProblemFetchingRoutes from "./routes/Admin_CurrentProblemSpecificProblemFetchingRoutes.js";
+import AdminDeleteSpecificProblemRoutes from "./routes/Admin_DeleteSpecificProblemRoutes.js";
+import AdminFetchAllProblemRequestRoutes from "./routes/Admin_FetchAllProblemRequestRoutes.js";
+import AdminFetchSpecificProblemRequestRoutes from "./routes/Admin_FetchSpecificProblemRequestRoutes.js";
+import AdminDenyProblemCreationRequestRoutes from "./routes/Admin_DenyProblemCreationRequestRoutes.js";
+
+
+
+
 
 
 
@@ -109,6 +119,12 @@ app.use("/api", AdminDeleteMemberAssociationRoutes);
 app.use("/api", AdminDeleteSpecificBatchRoutes);
 app.use("/api", AdminFetchSpecificBatchAssociationRoutes);
 app.use("/api", AdminUpdateEditAssociationBatchRoutes); 
+app.use("/api", AdminCurrentProblemTitleListingRoutes);
+app.use("/api", AdminCurrentProblemSpecificProblemFetchingRoutes);
+app.use("/api", AdminDeleteSpecificProblemRoutes);
+app.use("/api", AdminFetchAllProblemRequestRoutes);
+app.use("/api", AdminFetchSpecificProblemRequestRoutes);
+app.use("/api", AdminDenyProblemCreationRequestRoutes);
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
