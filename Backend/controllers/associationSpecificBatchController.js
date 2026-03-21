@@ -15,9 +15,9 @@ export const getAssociationBatchDetails = async (req, res) => {
             replacements: { year }
         });
 
-        // Query members
+        
         const [members] = await sequelize.query(`
-            SELECT register_number, name, role
+            SELECT register_number, name, role, year
             FROM association_members
             WHERE batch_year = :year
             ORDER BY name

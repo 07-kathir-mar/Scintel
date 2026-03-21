@@ -38,6 +38,17 @@ import AdminDeleteSpecificGloryRoutes from "./routes/Admin_DeleteSpecificGloryRo
 import AdminFetchSpecificGloryRoutes from "./routes/Admin_FetchSpecificGloryRoutes.js";
 import AdminUpdateEditGloryRoutes from "./routes/Admin_UpdateEditGloryRoutes.js";
 import AdminAcceptSuggestionMailRoutes from "./routes/Admin_AcceptSuggestionMailRoutes.js";
+import AdminAddAssociationBatchRoutes from "./routes/Admin_AddAssociationBatchRoutes.js";
+import AdminAddMemberAssociationRoutes from "./routes/Admin_AddMemberAssociationRoutes.js";
+import AdminFetchSpecificMemberAssociationRoutes from "./routes/Admin_FetchSpecificMemberAssociationRoutes.js";
+import AdminUpdateEditMemberAssociationRoutes from "./routes/Admin_UpdateEditMemberAssociationRoutes.js";
+import AdminDeleteMemberAssociationRoutes from "./routes/Admin_DeleteMemberAssociationRoutes.js";
+import AdminDeleteSpecificBatchRoutes from "./routes/Admin_DeleteSpecificBatchRoutes.js";
+import AdminFetchSpecificBatchAssociationRoutes from "./routes/Admin_FetchSpecificBatchAssociationRoutes.js";
+import AdminUpdateEditAssociationBatchRoutes from "./routes/Admin_UpdateEditAssociationBatchRoutes.js";
+
+
+
 
 const app = express();
 
@@ -90,8 +101,14 @@ app.use("/api", AdminDeleteSpecificGloryRoutes);
 app.use("/api", AdminFetchSpecificGloryRoutes);
 app.use("/api", AdminUpdateEditGloryRoutes);
 app.use("/api", AdminAcceptSuggestionMailRoutes);
-
-
+app.use("/api", AdminAddAssociationBatchRoutes);
+app.use("/api", AdminAddMemberAssociationRoutes);
+app.use("/api", AdminFetchSpecificMemberAssociationRoutes);
+app.use("/api", AdminUpdateEditMemberAssociationRoutes);
+app.use("/api", AdminDeleteMemberAssociationRoutes);
+app.use("/api", AdminDeleteSpecificBatchRoutes);
+app.use("/api", AdminFetchSpecificBatchAssociationRoutes);
+app.use("/api", AdminUpdateEditAssociationBatchRoutes); 
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
