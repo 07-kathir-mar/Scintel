@@ -37,6 +37,7 @@ import AdminFetchAllGloriesRoutes from "./routes/Admin_FetchAllGloriesRoutes.js"
 import AdminDeleteSpecificGloryRoutes from "./routes/Admin_DeleteSpecificGloryRoutes.js";
 import AdminFetchSpecificGloryRoutes from "./routes/Admin_FetchSpecificGloryRoutes.js";
 import AdminUpdateEditGloryRoutes from "./routes/Admin_UpdateEditGloryRoutes.js";
+import AdminAcceptSuggestionMailRoutes from "./routes/Admin_AcceptSuggestionMailRoutes.js";
 
 const app = express();
 
@@ -88,6 +89,7 @@ app.use("/api", AdminFetchAllGloriesRoutes);
 app.use("/api", AdminDeleteSpecificGloryRoutes);
 app.use("/api", AdminFetchSpecificGloryRoutes);
 app.use("/api", AdminUpdateEditGloryRoutes);
+app.use("/api", AdminAcceptSuggestionMailRoutes);
 
 
 
