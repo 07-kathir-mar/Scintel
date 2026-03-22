@@ -52,10 +52,13 @@ import AdminDeleteSpecificProblemRoutes from "./routes/Admin_DeleteSpecificProbl
 import AdminFetchAllProblemRequestRoutes from "./routes/Admin_FetchAllProblemRequestRoutes.js";
 import AdminFetchSpecificProblemRequestRoutes from "./routes/Admin_FetchSpecificProblemRequestRoutes.js";
 import AdminDenyProblemCreationRequestRoutes from "./routes/Admin_DenyProblemCreationRequestRoutes.js";
-
-
-
-
+import AdminAcceptProblemCreationRequestRoutes from "./routes/Admin_AcceptProblemCreationRequestRoutes.js";
+import AdminAllProblemSolverRequestsRoutes from "./routes/Admin_AllProblemSolverRequestsRoutes.js";
+import AdminFetchSpecificProblemSolverRequestRoutes from "./routes/Admin_FetchSpecificProblemSolverRequestRoutes.js";
+import AdminAcceptProblemSolverRequestRoutes from "./routes/Admin_AcceptProblemSolverRequestRoutes.js";
+import AdminDenyProblemSolverRequestRoutes from "./routes/Admin_DenyProblemSolverRequestRoutes.js";
+import AdminDeleteSpecificBatchActivityRoutes from "./routes/Admin_DeleteSpecificBatchActivityRoutes.js";
+import AdminDeleteSpecificActivityRoutes from "./routes/Admin_DeleteSpecificActivityRoutes.js";
 
 
 
@@ -125,6 +128,13 @@ app.use("/api", AdminDeleteSpecificProblemRoutes);
 app.use("/api", AdminFetchAllProblemRequestRoutes);
 app.use("/api", AdminFetchSpecificProblemRequestRoutes);
 app.use("/api", AdminDenyProblemCreationRequestRoutes);
+app.use("/api", AdminAcceptProblemCreationRequestRoutes);
+app.use("/api", AdminAllProblemSolverRequestsRoutes); 
+app.use("/api", AdminFetchSpecificProblemSolverRequestRoutes);
+app.use("/api", AdminAcceptProblemSolverRequestRoutes);
+app.use("/api", AdminDenyProblemSolverRequestRoutes);
+app.use("/api", AdminDeleteSpecificBatchActivityRoutes);
+app.use("/api", AdminDeleteSpecificActivityRoutes);
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");

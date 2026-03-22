@@ -8,14 +8,13 @@ export const getAssociationBatchDetails = async (req, res) => {
 
         // Query batch information
         const [batchInfo] = await sequelize.query(`
-            SELECT batch_year, title, description, image_url
+            SELECT batch_id, batch_year, title, description, image_url
             FROM association_batch
             WHERE batch_year = :year
         `, {
             replacements: { year }
         });
 
-        
         const [members] = await sequelize.query(`
             SELECT register_number, name, role, year
             FROM association_members
@@ -26,8 +25,8 @@ export const getAssociationBatchDetails = async (req, res) => {
         });
 
         res.json({
-            batch_info: batchInfo[0],
-            members: members
+            batch_info: batchInfo[0] || null,
+            members: members || []
         });
 
     } catch (error) {
